@@ -1,47 +1,21 @@
 <!DOCTYPE html>
 <html lang="el">
- <head>
-     <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<head>
+    <meta http-equiv="Content-Language" content="el">
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mastiha Essence</title>
+
 <style>
-body {
-font-family: 'Segoe UI', sans-serif;
-margin: 0;
-background-color: #fdfdfd;
-color: #333;
-}
-header {
+body {font-family: 'Segoe UI', sans-serif;margin: 0;background-color: #fdfdfd;color: #333;}
+header {display: flex;justify-content: space-between;align-items: center;padding: 0.5rem;background-color: #6a9e9e;color: white;}
+nav ul {list-style: none;
 display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 1rem;
-background-color: #6a9e9e;
-color: white;
-}
-nav ul {
-list-style: none;
-display: flex;
-gap: 1rem;
-padding: 0;
-margin: 0;
-}
-nav ul li {
-cursor: pointer;
-}
-.language-switcher {
-display: flex;
-gap: 0.5rem;
-}
-.tab-content {
-padding: 2rem;
-}
-footer {
-position: fixed;
-bottom: 1rem;
-right: 1rem;
-z-index: 1000;
-}
+gap: 4rem;padding: 0;margin: 0;}
+nav ul li {cursor: pointer;}
+.language-switcher {display: flex;gap: 0.5rem;}
+.tab-content {padding: 2rem;}
+footer {position: fixed;bottom: 0rem;right: 0rem;z-index: 1000;}
 .amea-button {
 background: #6a9e9e;
 color: white;
@@ -53,17 +27,10 @@ width: 3rem;
 height: 3rem;
 display: flex;
 align-items: center;
-justify-content: center;
-}
-.tab {
-display: none;
-}
-.tab.active {
-display: block;
-}
-.features {
-margin-top: 1rem;
-}
+justify-content: center;}
+.tab {display: none;}
+.tab.active {display: block;}
+.features {margin-top: 1rem;}
 img.room {
 width: 100%;
 max-width: 400px;
@@ -89,8 +56,12 @@ animation: none !important;
 </style>
 </head>
 <body>
+<a href="https://raw.githubusercontent.com/Mastihaessence/Mastihaessence4/main/TOURISMOS_WEBPEPBAIG-2.pdf" target="_blank">
+  <img src="https://raw.githubusercontent.com/Mastihaessence/Mastihaessence4/main/BANNER_%CE%A0%CE%91%CE%91_GR.jpg" style="width:100%; max-width:600px; margin:1rem auto; display:block;" alt="ΠΑΑ Banner" />
+</a>
 <header>
-<div><strong>Mastiha Essence</strong></div>
+<div><h1>Mastiha Essence</h1>
+</div>
 <nav>
 <ul id="menu-tabs">
 <li onclick="showTab('chios')">Το νησί μας</li>
@@ -112,7 +83,6 @@ animation: none !important;
 </section>
 <section id="space" class="tab">
 <div class="tab-content">
-<img src="https://source.unsplash.com/400x300/?room" alt="room" class="room" />
 <div class="features" id="space-features"></div>
 </div>
 </section>
@@ -200,23 +170,13 @@ document.getElementById('email').textContent = texts[lang].email;
 // Κατάσταση μενού προσβασιμότητας
 let accessibilityMenuVisible = false;
 
-function toggleAccessibilityMenu() {
-accessibilityMenuVisible = !accessibilityMenuVisible;
-document.getElementById('accessibility-menu').style.display = accessibilityMenuVisible ? 'block' : 'none';
-}
+function toggleAccessibilityMenu() {accessibilityMenuVisible = !accessibilityMenuVisible;
+document.getElementById('accessibility-menu').style.display = accessibilityMenuVisible ? 'block' : 'none';}
 
-function toggleHighContrast() {
-document.body.classList.toggle('high-contrast');
-}
-function toggleLargeText() {
-document.body.classList.toggle('large-text');
-}
-function toggleUnderlineLinks() {
-document.body.classList.toggle('underline-links');
-}
-function disableAnimations() {
-document.body.classList.toggle('disable-animations');
-}
+function toggleHighContrast() {document.body.classList.toggle('high-contrast');}
+function toggleLargeText() {document.body.classList.toggle('large-text');}
+function toggleUnderlineLinks() {document.body.classList.toggle('underline-links');}
+function disableAnimations() {document.body.classList.toggle('disable-animations');}
 
 // Αρχικοποίηση περιεχομένου στη γλώσσα που θέλουμε
 setLanguage(currentLanguage);
