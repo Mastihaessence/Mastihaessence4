@@ -206,11 +206,12 @@ function toggleLargeText() {document.body.classList.toggle('large-text');}
 function toggleUnderlineLinks() {document.body.classList.toggle('underline-links');}
 function disableAnimations() {document.body.classList.toggle('disable-animations');}
 
-// Αρχικοποίηση περιεχομένου στη γλώσσα που θέλουμε
-setLanguage(currentLanguage);
+const currentLanguage = window.currentLanguage || 'el';
+      document.documentElement.lang = currentLanguage;
 </script>
 </body>
 </html>
+
 
 
 
