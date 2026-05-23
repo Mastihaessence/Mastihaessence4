@@ -35,8 +35,6 @@ nav ul {
     gap: 1rem;
   }
 }
-display: flex;
-gap: 4rem;padding: 0;margin: 0;}
 nav ul li {cursor: pointer;}
 .language-switcher {display: flex;gap: 0.5rem;}
 .tab-content {padding: 2rem;}
@@ -78,6 +76,40 @@ text-decoration: underline !important;
 transition: none !important;
 animation: none !important;
 }
+.gallery {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1rem;
+margin-top: 2rem;
+padding: 1rem;
+}
+
+.gallery img {
+width: 100%;
+height: 220px;
+object-fit: cover;
+border-radius: 18px;
+cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.gallery img:hover {
+transform: scale(1.03);
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 992px) {
+.gallery {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 600px) {
+.gallery {
+grid-template-columns: 1fr;
+}
+}
 </style>
 </head>
 <body>
@@ -93,7 +125,8 @@ animation: none !important;
 <nav>
 <ul id="menu-tabs">
 <li onclick="showTab('chios')">Το νησί μας</li>
-<li onclick="showTab('space')">Ο Χώρος μας</li>
+<li onclick="showTab('gallery')">Ο Χώρος μας</li>
+<li onclick="showTab('space')">Παροχές</li>
 <li onclick="showTab('about')">Σχετικά με εμάς</li>
 <li onclick="showTab('contact')">Επικοινωνία</li>
 </ul>
@@ -114,12 +147,29 @@ animation: none !important;
 <div class="features" id="space-features"></div>
 </div>
 </section>
+<section id="gallery" class="tab">
+<div class="tab-content">
+<div class="gallery">
+<img src="images/room1.jpg" alt="Room 1" onclick="openLightbox(this.src)">
+<img src="images/room2.jpg" alt="Room 2" onclick="openLightbox(this.src)">
+<img src="images/room3.jpg" alt="Room 3" onclick="openLightbox(this.src)">
+<img src="images/room4.jpg" alt="Room 4" onclick="openLightbox(this.src)">
+
+</div>
+</div>
+</section>
 <section id="about" class="tab">
 <div class="tab-content" id="about-text"></div>
 </section>
 <section id="contact" class="tab">
 <div class="tab-content">
-<p><strong>📞</strong> <a href="tel:+30 697 766 2394"><span id="phone"></span></a></p>
+<p><strong>📞</strong></p>
+
+<div id="phone">
+<a href="tel:+306974642765">+30 697 464 2765</a><br>
+<a href="tel:+306939006997">+30 693 900 6997</a><br>
+<a href="tel:+306977662394">+30 697 766 2394</a>
+</div>
 <p><strong>✉️</strong> <a href="mailto:mastiha@gmail.com"><span id="email"></span></a></p>
 <p>See the location on the map: 
 <a href="https://maps.app.goo.gl/u3xVSsDNPnUSug1R6" target="_blank" rel="noopener noreferrer">Mastiha Essence on Google Maps</a>
@@ -143,28 +193,25 @@ animation: none !important;
 <script>
 const texts = {
 el: {
-tabs: ['Το νησί μας', 'Ο Χώρος μας', 'Σχετικά με εμάς', 'Επικοινωνία'],
+tabs: ['Το νησί μας', 'Ο Χώρος μας', 'Παροχές', 'Σχετικά με εμάς', 'Επικοινωνία'],
 chios: `<h2>Χίος – Το άρωμα του Αιγαίου</h2><p>Η Χίος είναι ένας κρυμμένος θησαυρός του Αιγαίου, γεμάτος αυθεντικότητα, ιστορία και αρώματα. Από τα Μεσαιωνικά Μαστιχοχώρια μέχρι τις καταγάλανες παραλίες και τα μοναδικά αρχιτεκτονικά στολίδια του Πυργίου, η Χίος προσφέρει μια εμπειρία αυθεντικής νησιωτικής ζωής.</p><p>Το Πυργί, το πιο ιδιαίτερο και ζωντανό χωριό του νησιού, φημίζεται για τα χαρακτηριστικά "ξυστά" στις προσόψεις των σπιτιών του και την έντονη πολιτιστική του δραστηριότητα. Είναι ένα ζωντανό μουσείο λαϊκής τέχνης και παράδοσης, γεμάτο από αυθεντικά αρώματα μαστίχας και φιλόξενους ανθρώπους.</p><p>Ανακαλύψτε τη Χίο και αφήστε το άρωμα της μαστίχας να σας μείνει αξέχαστο.</p>`,
 space: '<ul><li>Δωρεάν Wi-Fi</li><li>Δύο υπνοδωμάτια με μπαλκόνι και μεγάλο διπλό κρεβάτι το καθένα</li><li>Καθιστικό</li><li>Τηλεοράσεις επίπεδης οθόνης (στα υπνοδωμάτια και στο κουζινοκαθιστικό)</li><li>A/C (κλιματισμός στα υπνοδωμάτια και στο κουζινοκαθιστικό)</li><li>Ζεστό νερό</li><li>Ιδιωτικό μπάνιο με ντους</li><li>Σεσουάρ μαλλιών</li><li>Ιδιωτικό WC</li><li>Δωρεάν προϊόντα περιποίησης</li><li>Παντόφλες</li><li>Χαρτί υγείας</li><li>Λευκά είδη (κλινοσκεπάσματα, σεντόνια, πετσέτες)</li><li>Πλυντήριο – στεγνωτήριο</li><li>Παροχές σιδερώματος (Σίδερο και σιδερώστρα ρούχων)</li><li>Παροχή υπηρεσιών καθαριότητας κατόπιν συνεννόησης</li><li>Ιδιωτική κουζίνα πλήρως εξοπλισμένη:<ul><li>Συσκευές καφέ/τσάι</li><li>Ηλεκτρικός βραστήρας</li><li>Τοστιέρα</li><li>Φρυγανιέρα</li><li>Ψυγείο</li><li>Φούρνος</li><li>Εστία μαγειρέματος</li><li>Τραπέζι και καρέκλες φαγητού</li><li>Οικιακά σκεύη</li></ul></li><li>Δάπεδο με πλακάκια ή μάρμαρο</li><li>Τραπέζι και 2 καρέκλες εξωτερικού χώρου στο μπαλκόνι</li><li>Δεν επιτρέπεται το κάπνισμα στους εσωτερικούς χώρους</li><li>Δεν επιτρέπονται τα κατοικίδια</li><li>Αυτό το κατάλυμα δεν φιλοξενεί μπάτσελορ ή αντίστοιχα πάρτι</li><li>Καλάθι καλωσορίσματος κατά την άφιξη</li><li>Check-in: από τις 15:00</li><li>Check-out: Έως τις 11:00</li>',
 about: `<h2>Mastiha Essence - Pyrgi Living</h2><p>Σας καλωσορίζουμε στο Mastiha Essence, μια αυθεντική εμπειρία διαμονής στην καρδιά του Πυργίου, του πιο γραφικού και παραδοσιακού χωριού της Χίου. Το κατάλυμα μας απέχει μόλις ένα λεπτό με τα πόδια από την κεντρική πλατεία του χωριού και είναι το ιδανικό σημείο για να ανακαλύψετε τον πολιτισμό, την ιστορία και τα αρώματα της μοναδικής χιώτικης μαστίχας.</p><p>Το σπίτι έχει ανακαινιστεί με ιδιαίτερη φροντίδα και υψηλές προδιαγραφές, ώστε να προσφέρει άνεση και λειτουργικότητα σε έως και τέσσερις επισκέπτες. Έχει σχεδιαστεί έτσι ώστε να νιώσετε σαν στο σπίτι σας – με έμφαση στην καθαριότητα, την άνεση και τον πλήρη εξοπλισμό.</p><p>Η κουζίνα του καταλύματος είναι πλήρως εξοπλισμένη, παρέχοντάς σας τη δυνατότητα να ετοιμάσετε το πρωινό σας, αλλά και να απολαύσετε ένα πλήρες μεσημεριανό ή βραδινό γεύμα στον δικό σας ρυθμό.</p><p>Το Mastiha Essence είναι έτοιμο να σας υποδεχτεί, προσφέροντάς σας αυθεντική χιώτικη φιλοξενία σ’ ένα περιβάλλον γεμάτο παράδοση, χρώμα και άρωμα μαστίχας.</p>`,
-phone: '+30 697 766 2394',
 email: 'mastihaessence@gmail.com'
 },
 en: {
-tabs: ['Chios', 'Our Space', 'About Us', 'Contact'],
+tabs: ['Chios', 'Our Space', 'Amenities', 'About Us', 'Contact'],
 chios: `<h2>Chios – The Scent of the Aegean</h2><p>Chios is a hidden gem of the Aegean, full of authenticity, history, and aromas. From the medieval mastic villages to crystal-clear beaches and the unique architecture of Pyrgi, Chios offers a truly genuine island experience.</p><p>Pyrgi, the most distinct and vibrant village on the island, is famous for its "xysta" geometric facade designs and rich cultural life. It is a living museum of folk art and tradition, filled with the scent of mastiha and warm hospitality.</p><p>Discover Chios and let the scent of mastiha stay with you forever.</p>`,
 space: '<ul><li>Free Wi-Fi</li><li>Two bedrooms with balcony and large double bed each</li><li>Living room</li><li>Flat screen TVs (in bedrooms and kitchen-living area)</li><li>A/C (air conditioning in bedrooms and kitchen-living area)</li><li>Hot water</li><li>Private bathroom with shower</li><li>Hairdryer</li><li>Private WC</li><li>Free toiletries</li><li>Slippers</li><li>Toilet paper</li><li>Bedding (sheets, blankets, towels)</li><li>Washing machine – dryer</li><li>Ironing facilities (iron and ironing board)</li><li>Cleaning services on request</li><li>Fully equipped private kitchen:<ul><li>Coffee/tea maker</li><li>Electric kettle</li><li>Toaster</li><li>Grill toaster</li><li>Refrigerator</li><li>Oven</li><li>Cooking hob</li><li>Dining table and chairs</li><li>Cookware</li></ul></li><li>Tiled or marble floors</li><li>Table and 2 chairs on balcony</li><li>No smoking indoors</li><li>No pets allowed</li><li>This accommodation does not host bachelor parties or similar events</li><li>Welcome basket on arrival</li><li>Check-in: from 15:00</li><li>Check-out: until 11:00</li></ul>',
 about: `<h2>Mastiha Essence - Pyrgi Living</h2><p>Welcome to Mastiha Essence, an authentic stay experience in the heart of Pyrgi, the most picturesque and traditional village of Chios. Just one minute’s walk from the central square, our property is the perfect place to explore the culture, history, and aromas of unique Chios mastiha.</p><p>Renovated with great care and high standards, our house offers comfort and functionality for up to four guests. Designed to make you feel at home – with emphasis on cleanliness, comfort, and full equipment.</p><p>The kitchen is fully equipped, allowing you to prepare your breakfast and enjoy full meals at your own pace.</p><p>Mastiha Essence is ready to welcome you with authentic Chian hospitality in an environment full of tradition, color, and the scent of mastiha.</p>`,
-phone: '+30 697 766 2394',
 email: 'mastihaessence@gmail.com'
 },
 tr: {
-tabs: ['Sakız', 'Alanımız', 'Hakkımızda', 'İletişim'],
+tabs: ['Sakız', 'Alanımız', 'Olanaklar', 'Hakkımızda', 'İletişim'],
 chios: `<h2>Chios – Ege’nin Kokusu</h2><p>Chios, Ege’nin saklı bir hazinesidir; özgünlük, tarih ve kokularla dolu. Orta Çağ sakız köylerinden berrak plajlara ve Pyrgi’nin benzersiz mimarisine kadar, Chios gerçek bir ada deneyimi sunar.</p><p>Pyrgi, adanın en belirgin ve canlı köyüdür; "xysta" geometrik cephe tasarımları ve zengin kültürel yaşamı ile ünlüdür. Sakız kokusu ve sıcak misafirperverlikle dolu yaşayan bir halk sanatı ve gelenek müzesidir.</p><p>Chios’u keşfedin ve sakız kokusunu sonsuza dek yanınızda taşıyın.</p>`,
 space: '<li>Ücretsiz Wi-Fi</li><li>Her biri balkonlu ve büyük çift kişilik yataklı iki yatak odası</li><li>Oturma odası</li><li>Düz ekran TV\'ler (yatak odalarında ve mutfak-oturma alanında)</li><li>Klima (yatak odalarında ve mutfak-oturma alanında)</li><li>Sıcak su</li><li>Duşlu özel banyo</li><li>Saç kurutma makinesi</li><li>Özel WC</li><li>Ücretsiz banyo malzemeleri</li><li>Terlikler</li><li>Tuvalet kağıdı</li><li>Nevresimler (çarşaflar, örtüler, havlular)</li><li>Çamaşır makinesi – kurutucu</li><li>Ütü olanakları (ütü ve ütü masası)</li><li>İstek üzerine temizlik hizmetleri</li><li>Tam donanımlı özel mutfak:<ul><li>Kahve/çay makinesi</li><li>Elektrikli su ısıtıcısı</li><li>Toaster</li><li>Izgara tost makinesi</li><li>Buzdolabı</li><li>Fırın</li><li>Ocak</li><li>Yemek masası ve sandalyeler</li><li>Mutfak eşyaları</li></ul></li><li>Fayans veya mermer zemin</li><li>Balkonda masa ve 2 sandalye</li><li>Kapalı alanlarda sigara içmek yasaktır</li><li>Evcil hayvanlara izin verilmez</li><li>Bu konaklama yeri bekarlığa veda partileri veya benzeri etkinliklere ev sahipliği yapmaz</li><li>Varışta hoşgeldin sepeti</li><li>Check-in: 15:00’den itibaren</li><li>Check-out: 11:00’e kadar</li></ul>',
 about: `<h2>Mastiha Essence - Pyrgi Living</h2><p>Mastiha Essence'e hoş geldiniz, Chios'un en pitoresk ve geleneksel köyü Pyrgi'nin kalbinde otantik bir konaklama deneyimi. Merkez meydandan sadece bir dakikalık yürüme mesafesinde, mülkümüz kültürü, tarihi ve eşsiz Chios sakızının kokularını keşfetmek için mükemmel bir yerdir.</p><p>Özenle ve yüksek standartlarda yenilenmiş olan evimiz, dört konuğa kadar konfor ve işlevsellik sunar. Temizlik, konfor ve tam donanım vurgusuyla evinizdeymiş gibi hissetmeniz için tasarlandı.</p><p>Mutfak tamamen donanımlıdır, kahvaltınızı hazırlamanıza ve kendi hızınızda tam yemeklerinizin tadını çıkarmanıza olanak tanır.</p><p>Mastiha Essence, gelenek, renk ve sakız kokusu dolu bir ortamda otantik Chios misafirperverliğiyle sizi karşılamaya hazırdır.</p>`,
-phone: '+30 697 766 2394',
-email: 'mastihaessence@gmail.com'
+phone: '+30 697 464 2765 / +30 693 900 6997 / +30 697 766 2394',email: 'mastihaessence@gmail.com'
 }
 };
 
@@ -191,7 +238,6 @@ tab.textContent = texts[lang].tabs[idx];
 document.getElementById('chios-text').innerHTML = texts[lang].chios;
 document.getElementById('space-features').innerHTML = texts[lang].space;
 document.getElementById('about-text').innerHTML = texts[lang].about;
-document.getElementById('phone').textContent = texts[lang].phone;
 document.getElementById('email').textContent = texts[lang].email;
 }
 
@@ -207,8 +253,115 @@ function toggleUnderlineLinks() {document.body.classList.toggle('underline-links
 function disableAnimations() {document.body.classList.toggle('disable-animations');}
 
 // Αρχικοποίηση περιεχομένου στη γλώσσα που θέλουμε
+const images = [
+"images/room1.jpg",
+"images/room2.jpg",
+"images/room3.jpg",
+"images/room4.jpg",
+];
+
+let currentImageIndex = 0;
+
+function openLightbox(src) {
+
+currentImageIndex = images.indexOf(src);
+
+document.getElementById('lightbox').style.display = 'flex';
+
+document.getElementById('lightbox-img').src = src;
+}
+
+function nextImage() {
+
+currentImageIndex++;
+
+if (currentImageIndex >= images.length) {
+currentImageIndex = 0;
+}
+
+document.getElementById('lightbox-img').src = images[currentImageIndex];
+}
+
+function prevImage() {
+
+currentImageIndex--;
+
+if (currentImageIndex < 0) {
+currentImageIndex = images.length - 1;
+}
+
+document.getElementById('lightbox-img').src = images[currentImageIndex];
+}
+
+function closeLightbox() {
+document.getElementById('lightbox').style.display = 'none';
+}
 setLanguage(currentLanguage);
 </script>
+<div id="lightbox"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+<button onclick="prevImage()"
+style="
+position:absolute;
+left:15px;
+font-size:2rem;
+background:rgba(255,255,255,0.15);
+border:none;
+color:white;
+cursor:pointer;
+padding:10px 14px;
+border-radius:50%;
+backdrop-filter:blur(4px);
+">
+❮
+</button>
+
+<img id="lightbox-img"
+style="
+max-width:90%;
+max-height:90%;
+border-radius:20px;
+">
+<button onclick="nextImage()"
+style="
+position:absolute;
+right:15px;
+font-size:2rem;
+background:rgba(255,255,255,0.15);
+border:none;
+color:white;
+cursor:pointer;
+padding:10px 14px;
+border-radius:50%;
+backdrop-filter:blur(4px);
+">
+❯
+</button>
+<button onclick="closeLightbox()"
+style="
+position:absolute;
+top:20px;
+right:20px;
+font-size:2rem;
+background:none;
+border:none;
+color:white;
+cursor:pointer;
+">
+✕
+</button>
+
+</div>
 </body>
 </html>
-
