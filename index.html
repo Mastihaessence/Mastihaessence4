@@ -150,37 +150,37 @@ grid-template-columns: 1fr;
 <section id="gallery" class="tab">
 <div class="tab-content">
 <div class="gallery">
-<img src="images/room1.jpg" alt="Room 1" onclick="openLightbox(this.src)">
-<img src="images/room2.jpg" alt="Room 2" onclick="openLightbox(this.src)">
-<img src="images/room3.jpg" alt="Room 3" onclick="openLightbox(this.src)">
-<img src="images/room4.jpg" alt="Room 4" onclick="openLightbox(this.src)">
-<img src="images/room5.jpg" alt="Room 5" onclick="openLightbox(this.src)">
-<img src="images/room6.jpg" alt="Room 6" onclick="openLightbox(this.src)">
-<img src="images/room7.jpg" alt="Room 7" onclick="openLightbox(this.src)">
-<img src="images/room8.jpg" alt="Room 8" onclick="openLightbox(this.src)"> 
-<img src="images/room9.jpg" alt="Room 9" onclick="openLightbox(this.src)">
-<img src="images/room10.jpg" alt="Room 10" onclick="openLightbox(this.src)">
-<img src="images/room11.jpg" alt="Room 11" onclick="openLightbox(this.src)">
-<img src="images/room12.jpg" alt="Room 12" onclick="openLightbox(this.src)">
-<img src="images/room13.jpg" alt="Room 13" onclick="openLightbox(this.src)">
-<img src="images/room14.jpg" alt="Room 14" onclick="openLightbox(this.src)">
-<img src="images/room15.jpg" alt="Room 15" onclick="openLightbox(this.src)">
-<img src="images/room16.jpg" alt="Room 16" onclick="openLightbox(this.src)">
-<img src="images/room17.jpg" alt="Room 17" onclick="openLightbox(this.src)">
-<img src="images/room18.jpg" alt="Room 18" onclick="openLightbox(this.src)">
-<img src="images/room19.jpg" alt="Room 19" onclick="openLightbox(this.src)">
-<img src="images/room20.jpg" alt="Room 20" onclick="openLightbox(this.src)">
-<img src="images/room21.jpg" alt="Room 21" onclick="openLightbox(this.src)">
-<img src="images/room22.jpg" alt="Room 22" onclick="openLightbox(this.src)">
-<img src="images/room23.jpg" alt="Room 23" onclick="openLightbox(this.src)">
-<img src="images/room24.jpg" alt="Room 24" onclick="openLightbox(this.src)">
-<img src="images/room25.jpg" alt="Room 25" onclick="openLightbox(this.src)">
-<img src="images/room26.jpg" alt="Room 26" onclick="openLightbox(this.src)">
-<img src="images/room27.jpg" alt="Room 27" onclick="openLightbox(this.src)">
-<img src="images/room28.jpg" alt="Room 28" onclick="openLightbox(this.src)">
-<img src="images/room29.jpg" alt="Room 29" onclick="openLightbox(this.src)">
-<img src="images/room30.jpg" alt="Room 30" onclick="openLightbox(this.src)">
-<img src="images/room31.jpg" alt="Room 31" onclick="openLightbox(this.src)">
+<img src="images/room1.jpg" alt="Room 1" onclick="openLightbox(this)">
+<img src="images/room2.jpg" alt="Room 2" onclick="openLightbox(this)">
+<img src="images/room3.jpg" alt="Room 3" onclick="openLightbox(this)">
+<img src="images/room4.jpg" alt="Room 4" onclick="openLightbox(this)">
+<img src="images/room5.jpg" alt="Room 5" onclick="openLightbox(this)">
+<img src="images/room6.jpg" alt="Room 6" onclick="openLightbox(this)">
+<img src="images/room7.jpg" alt="Room 7" onclick="openLightbox(this)">
+<img src="images/room8.jpg" alt="Room 8" onclick="openLightbox(this)"> 
+<img src="images/room9.jpg" alt="Room 9" onclick="openLightbox(this)">
+<img src="images/room10.jpg" alt="Room 10" onclick="openLightbox(this)">
+<img src="images/room11.jpg" alt="Room 11" onclick="openLightbox(this)">
+<img src="images/room12.jpg" alt="Room 12" onclick="openLightbox(this)">
+<img src="images/room13.jpg" alt="Room 13" onclick="openLightbox(this)">
+<img src="images/room14.jpg" alt="Room 14" onclick="openLightbox(this)">
+<img src="images/room15.jpg" alt="Room 15" onclick="openLightbox(this)">
+<img src="images/room16.jpg" alt="Room 16" onclick="openLightbox(this)">
+<img src="images/room17.jpg" alt="Room 17" onclick="openLightbox(this)">
+<img src="images/room18.jpg" alt="Room 18" onclick="openLightbox(this)">
+<img src="images/room19.jpg" alt="Room 19" onclick="openLightbox(this)">
+<img src="images/room20.jpg" alt="Room 20" onclick="openLightbox(this)">
+<img src="images/room21.jpg" alt="Room 21" onclick="openLightbox(this)">
+<img src="images/room22.jpg" alt="Room 22" onclick="openLightbox(this)">
+<img src="images/room23.jpg" alt="Room 23" onclick="openLightbox(this)">
+<img src="images/room24.jpg" alt="Room 24" onclick="openLightbox(this)">
+<img src="images/room25.jpg" alt="Room 25" onclick="openLightbox(this)">
+<img src="images/room26.jpg" alt="Room 26" onclick="openLightbox(this)">
+<img src="images/room27.jpg" alt="Room 27" onclick="openLightbox(this)">
+<img src="images/room28.jpg" alt="Room 28" onclick="openLightbox(this)">
+<img src="images/room29.jpg" alt="Room 29" onclick="openLightbox(this)">
+<img src="images/room30.jpg" alt="Room 30" onclick="openLightbox(this)">
+<img src="images/room31.jpg" alt="Room 31" onclick="openLightbox(this)">
 
 </div>
 </div>
@@ -317,15 +317,16 @@ const images = [
 
 let currentImageIndex = 0;
 
-function openLightbox(src) {
+function openLightbox(img) {
 
-currentImageIndex = images.indexOf(src);
+const cleanSrc = img.getAttribute('src').trim();
+
+currentImageIndex = images.indexOf(cleanSrc);
 
 document.getElementById('lightbox').style.display = 'flex';
 
-document.getElementById('lightbox-img').src = src;
+document.getElementById('lightbox-img').src = cleanSrc;
 }
-
 function nextImage() {
 
 currentImageIndex++;
