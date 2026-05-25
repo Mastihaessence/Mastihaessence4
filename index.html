@@ -6,7 +6,13 @@
 <title>Mastiha Essence</title>
 
 <style>
-body {font-family: 'Segoe UI', sans-serif;margin: 0;background-color: #fdfdfd;color: #333;}
+body {
+font-family: 'Segoe UI', sans-serif;
+margin: 0;
+background-color: #fdfdfd;
+color: #333;
+letter-spacing: 0.2px;
+}
 header {display: flex;justify-content: space-between;align-items: center;padding: 0.5rem;background-color: #6a9e9e;color: white;}
 nav ul {
   list-style: none;
@@ -16,7 +22,17 @@ nav ul {
   margin: 0;
        }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) .tab-content {
+padding: 1.2rem;
+font-size: 1rem;
+line-height: 1.7;
+text-align: left;
+}
+
+.tab-content h2 {
+font-size: 1.6rem;
+}
+{
   nav a {display: block;
     padding: 1rem;
     border: none;
@@ -37,7 +53,25 @@ nav ul {
 }
 nav ul li {cursor: pointer;}
 .language-switcher {display: flex;gap: 0.5rem;}
-.tab-content {padding: 2rem;}
+.tab-content {
+padding: 2rem;
+max-width: 1100px;
+margin: 0 auto;
+line-height: 1.8;
+font-size: 1.05rem;
+text-align: justify;
+}
+
+.tab-content h2 {
+font-size: 2rem;
+margin-bottom: 1.2rem;
+color: #6a9e9e;
+text-align: center;
+}
+
+.tab-content p {
+margin-bottom: 1.4rem;
+}
 footer {position: fixed;bottom: 0rem;right: 0rem;z-index: 1000;}
 .amea-button {
 background: #6a9e9e;
@@ -57,7 +91,7 @@ justify-content: center;}
 img.room {
 width: 100%;
 max-width: 100%;
-margin-top: 0 auto;
+margin-top: 0 auto;	
 }
 .high-contrast {
 background-color: #000 !important;
